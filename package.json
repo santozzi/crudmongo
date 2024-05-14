@@ -8,28 +8,30 @@
     "start": "tsc && node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts"
   },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest", 
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
-    "dotenv": "^16.4.5",
     "morgan": "^1.10.0",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
     "reflect-metadata": "^0.2.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    
-  
-    "npm-check-updates": "^16.14.18",
-    "typescript": "^5.4.3",
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
@@ -38,11 +40,12 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.11.30",
     "@types/supertest": "^6.0.2",
+    "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
+    "npm-check-updates": "^16.14.18",
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
-    "ts-node-dev": "^2.0.0"
-
-
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.3"
   }
 }

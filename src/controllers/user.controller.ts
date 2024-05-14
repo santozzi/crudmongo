@@ -1,20 +1,20 @@
-import { UserInfo } from "os";
-import User from "../schemas/user.schema";
+import User from "../models/schemas/user.schema";
 import { Request, Response } from "express";
 import { UserInterface } from "../interfaces/user.interface";
-import { createModel } from "../models/user.model";
+import { createModel,deleteUser } from "../models/user.model";
 
 export const create = async (req:Request, res:Response) => {
-  try {
+    
+    
+    try {
    //TODO: validar el req con un middleware
-
-   const {apellido,carrera, edad, nombre, registrationDate, password, email } = req.body;
+   
+   const {apellido,carrera, edad, nombre, password, email } = req.body;
    const user:UserInterface={
      apellido,
      carrera,
      edad,
      nombre,
-     registrationDate,
      password,
      email
    }
@@ -26,12 +26,13 @@ export const create = async (req:Request, res:Response) => {
 
     res.status(200).json(userResponse);
   } catch (error) {
+
     res.status(500).json({ message: error });
   }
 };
 
-/* 
-export const get = async (req:Request, res:Response) => {
+
+export const findAll = async (req:Request, res:Response) => {
   try {
     const users = await User.find();
     if (users.length === 0) {
@@ -43,6 +44,17 @@ export const get = async (req:Request, res:Response) => {
   }
 };
 
+export const deleteUsr = async (req:Request, res:Response) => {
+  try {
+    const _id = req.params.id;
+
+    await deleteUser(_id);
+    res.status(201).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "internal server error" });
+  }
+}
+/* 
 export const update = async (req:Request, res:Response) => {
   try {
     //saber que vamos a actualizar con un identificador unico
@@ -63,16 +75,5 @@ export const update = async (req:Request, res:Response) => {
   }
 };
 
-export const deleteUser = async (req:Request, res:Response) => {
-  try {
-    const _id = req.params.id;
-    const userExist = await User.findOne({ _id });
-    if (!userExist) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    await User.findByIdAndDelete(_id);
-    res.status(201).json({ message: "User deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ error: "internal server error" });
-  }
+
 }; */

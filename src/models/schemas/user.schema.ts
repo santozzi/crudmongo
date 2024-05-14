@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { isGoodPassword } from "../utils/validator";
+import { isGoodPassword } from "../../utils/validator";
 const carreraEnum = [
     "ingenieria",
     "medicina",

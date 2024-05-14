@@ -11,3 +11,5 @@ export const mongooseConnection = ()=> mongoose
                 console.log("Database connected");
             }
         )
+export const mongooseDisconect = ()=> mongoose.disconnect().then(()=>console.log("Database disconected")
+);
