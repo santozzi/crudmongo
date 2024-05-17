@@ -1,9 +1,15 @@
 import { Router } from 'express';
-import { create,findAll } from '../controllers/user.controller';
+import { create,findAll, deleteUsr,findOne} from '../controllers/user.controller';
 
-const user:Router = Router();
+const userRoute:Router = Router();
+//TODO verifyTokenMiddleware para entrar a zonas restrigidas
+userRoute.get("/",findAll);
+userRoute.get("/:id",findOne);
+userRoute.post("/", create);
+//userRoute.post("/login", validate);
+userRoute.delete("/delete/:id",deleteUsr);
+//userRoute.put("/update/:id", update);
 
-user.post("/", create);
-user.get("/",findAll);
 
-export default user;
+
+export default userRoute;

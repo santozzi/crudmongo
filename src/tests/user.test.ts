@@ -1,4 +1,4 @@
-import { mongooseConnection,mongooseDisconect } from '../models/mongo.db';
+import { mongooseConnection,mongooseDisconect } from '../db/mongo.db';
 import app from '../app';
 import request from 'supertest';
 import {UserInterface} from '../interfaces/user.interface'

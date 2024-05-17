@@ -1,66 +1,74 @@
 import { EmailExistException } from "../Exceptions/EmailExistExeption";
+import { IdIsUndefinedException } from "../Exceptions/IdIsUndefinedException";
+import { UserDoesNotExistExeption } from "../Exceptions/UserDoesNotExistExeption";
 import { UserInterface } from "../interfaces/user.interface";
 import User from "./schemas/user.schema";
 
-
-export const createModel = async (user: UserInterface):Promise<UserInterface> => {
+export const createModel = async (user: UserInterface) => {
   try {
-
-  
     const userData = new User(user);
-
-
     // buscar si existe usuario (filtrar por email)
     //el email debe ser unico
     const { email } = userData;
     const userExist = await User.findOne({ email });
-    
-    
+
     if (userExist) {
-      throw new EmailExistException("El email ya se encuentra en la base de datos");
+      throw new EmailExistException("The email already exists");
     }
-    
-    
-     // guardar el usuario
-     const savedUser = await userData.save();
-     console.log(savedUser);
-    
-     const { apellido,carrera, edad, nombre, registrationDate,_id } = savedUser;
-     //TODO: hacer mappers
-     if(_id==undefined){
-       throw new Error("_id invalido")
-     }
-     const userResponse: UserInterface = {
-        _id,
-        apellido,
-        carrera,
-        edad,
-        email,
-        nombre,
-        registrationDate
-     }
-    
-     return userResponse;
-    
+    // guardar el usuario
+    const savedUser = await userData.save();
+    console.log(savedUser);
+    const { apellido, carrera, edad, nombre, registrationDate, _id } =
+      savedUser;
+    //TODO: hacer mappers
+    if (_id == undefined) {
+      // en una de esas nunca lo use, pero que lindo queda.
+      throw new IdIsUndefinedException("_id invalido");
+    }
+    const userResponse: UserInterface = {
+      _id,
+      apellido,
+      carrera,
+      edad,
+      email,
+      nombre,
+      registrationDate,
+    };
+
+    return userResponse;
   } catch (error) {
-     throw new Error ("Error genérico");
+    throw error;
   }
 };
 
-export const deleteUser = async (id:string) => {
+export const deleteUser = async (id: string) => {
   try {
+    const userExist = await User.findOne({ _id: id });
+    console.log(userExist);
 
-    const userExist = await User.findOne({ id });
     if (!userExist) {
-      throw new Error( "User not found");
+      throw new UserDoesNotExistExeption("User not found");
     }
     await User.findByIdAndDelete(id);
     return { message: "User deleted successfully" };
   } catch (error) {
-    throw new Error("internal server error" );
+    throw error;
   }
-}
+};
 
+export const findById = async (id: string) => {
+  try {
+    const _id = id;
+    const userExist = await User.findById(_id);
+    if (!userExist) {
+      throw new UserDoesNotExistExeption("User not found");
+    }
+
+    return userExist;
+  } catch (error) {
+    throw error;
+  }
+};
 
 /* 
 export const get = async (req:Request, res:Response) => {
