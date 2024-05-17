@@ -43,12 +43,8 @@ export const createModel = async (user: UserInterface) => {
 
 export const deleteUser = async (id: string) => {
   try {
-    const userExist = await User.findOne({ _id: id });
-    console.log(userExist);
-
-    if (!userExist) {
-      throw new UserDoesNotExistExeption("User not found");
-    }
+    //verifica si el usuario existe
+    await findById(id);
     await User.findByIdAndDelete(id);
     return { message: "User deleted successfully" };
   } catch (error) {
@@ -69,6 +65,14 @@ export const findById = async (id: string) => {
     throw error;
   }
 };
+
+export const findAll = async ()=>{
+   try{
+
+   }catch(error){
+    
+   }
+}
 
 /* 
 export const get = async (req:Request, res:Response) => {
