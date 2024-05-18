@@ -6,6 +6,7 @@ import  jwt  from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 import User from "./schemas/user.schema";
+import { jwtConfig } from "../config/jwt.config";
 //TODO: hacer una funcion que devuelva true o false para que el front verifique el email a la ora de cargar los datos de create
 export const emailExist = async(email:string)=>{
      try{
@@ -130,8 +131,8 @@ export const validate = async (email:string, password:string) => {
         userEmail: userFound.email,
       };
       //firmar token
-      //TODO: palabra secreta y el tiempo de expiracion llevarlos al env 
-      const token = jwt.sign(payload, "secreto", { expiresIn: "1h" });
+     
+      const token = jwt.sign(payload, jwtConfig.JWT_SECRET, { expiresIn: jwtConfig.JWT_EXPIRED });
       return token;
     }else{
       throw new UserDoesNotExistExeption("wrong email or password");

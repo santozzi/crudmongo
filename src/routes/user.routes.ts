@@ -6,7 +6,7 @@ const userRoute:Router = Router();
 
 userRoute.get("/",verifyTokenMiddleware, findAll);
 userRoute.get("/:id",verifyTokenMiddleware,findOne);
-userRoute.post("/", create);
+userRoute.post("/create", create);
 userRoute.post("/login", validate);
 userRoute.delete("/delete/:id",verifyTokenMiddleware,deleteUsr);
 userRoute.put("/update/:id",verifyTokenMiddleware, update);

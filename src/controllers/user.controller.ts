@@ -2,7 +2,8 @@ import User from "../models/schemas/user.schema";
 import { Request, Response } from "express";
 import { UserInterface } from "../interfaces/user.interface";
 import { createModel,deleteUser,findById,findAll as get,update as updateModel, validate as validateModel } from "../models/user.model";
-import { RequestWithUser } from "../middlewares/verifyToken.middleware";
+import { RequestWithUser } from "../interfaces/RequestWithUser";
+
 export const create = async (req:Request, res:Response) => { 
     try {
    //TODO: validar el req con un middleware
@@ -114,7 +115,7 @@ export const validate = async (req:Request, res:Response) => {
       if(error.name == "UserDoesNotExistExeption"){
         res.status(400).json({ message: error.message });
       }else{
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: error.message });
       }
     }
     
