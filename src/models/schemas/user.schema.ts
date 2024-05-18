@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { isGoodPassword } from "../../utils/validator";
+import bcrypt from "bcrypt";
 const carreraEnum = [
     "ingenieria",
     "medicina",
@@ -65,13 +66,19 @@ const carreraEnum = [
     password: {
       type: String,
       validate: {
-        validator: function (value:any) {
-          return isGoodPassword(value);
-        },
+        validator: 
+            function (value:any) {
+              return isGoodPassword(value);
+            }
+        ,
         message:
           "La contraseña debe tener entre 6 y 12 caracteres, un digito numerico, una letra minuscula, una letra mayuscula",
       },
     },
   });
-  
+  userSchema.pre("save", function (next) {
+    if(this.password !=null)
+       this.password = bcrypt.hashSync(this.password, 10);
+    next();
+  });
   export default mongoose.model("user", userSchema);

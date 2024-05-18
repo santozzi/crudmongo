@@ -1,7 +1,8 @@
 import User from "../models/schemas/user.schema";
 import { Request, Response } from "express";
 import { UserInterface } from "../interfaces/user.interface";
-import { createModel,deleteUser,findById } from "../models/user.model";
+import { createModel,deleteUser,findById,findAll as get,update as updateModel, validate as validateModel } from "../models/user.model";
+import { RequestWithUser } from "../middlewares/verifyToken.middleware";
 export const create = async (req:Request, res:Response) => { 
     try {
    //TODO: validar el req con un middleware
@@ -23,19 +24,29 @@ export const create = async (req:Request, res:Response) => {
 
     res.status(200).json(userResponse);
   } catch (error) {
-
-    res.status(500).json({ message: error });
+    if(error instanceof Error){
+      if(error.name=="EmailExistException"){
+        res.status(409).json({ message: error.message });
+      }else if (error.name=="IdIsUndefinedException"){
+        res.status(404).json({ message: error.message });
+      }else{
+        res.status(500).json({ message: error.message });
+      }
+    }
+    
   }
 };
 export const findAll = async (req:Request, res:Response) => {
   try {
-    const users = await User.find();
-    if (users.length === 0) {
-      return res.status(404).json({ message: "There are no users" });
-    }
+    const users = await get();
+    
+    console.log("log desde findAll: ", (req as RequestWithUser).user);
+    
+
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ error: "internal server error" });
+    if(error instanceof Error)
+       res.status(500).json({ error: error.message });
   }
 };
 
@@ -69,33 +80,46 @@ export const findOne = async (req:Request, res:Response) => {
          res.status(500).json({ error: error.message});
       }
     }
-      
-     
-
-      
+ 
   }
 };
 
-/* 
 export const update = async (req:Request, res:Response) => {
   try {
-    //saber que vamos a actualizar con un identificador unico
     const id = req.params.id;
-    //saber si existe la entidad a actualizar
-    const userExist = await User.findOne({ _id: id });
-    console.log(req.params.id);
-    if (!userExist) {
-      return res.status(404).json({ message: "User not found" });
-    }
     //actualizamos datos de usuario
-    const updateUser = await User.findByIdAndUpdate({ _id: id }, req.body, {
-      new: true,
-    });
+    const updateUser = await updateModel(id,req.body);
+    
     res.status(201).json(updateUser);
   } catch (error) {
-    res.status(500).json({ error: "internal server error" });
+    if (error instanceof Error){
+      if(error.name == "UserDoesNotExistExeption" )
+        res.status(404).json({ message: error.message });
+   
+      else
+        res.status(500).json({ error: error.message});
+    }
+   
+  }
+};
+
+export const validate = async (req:Request, res:Response) => {
+  try {
+    const {email, password} = req.body;
+    const token = await validateModel(email, password)
+    res.status(200).json({ token });
+  
+  } catch (error) {
+    if(error instanceof Error){
+      if(error.name == "UserDoesNotExistExeption"){
+        res.status(400).json({ message: error.message });
+      }else{
+        res.status(500).json({ message: "Internal server error" });
+      }
+    }
+    
+    
   }
 };
 
 
-}; */

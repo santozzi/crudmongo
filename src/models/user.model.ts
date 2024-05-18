@@ -2,45 +2,55 @@ import { EmailExistException } from "../Exceptions/EmailExistExeption";
 import { IdIsUndefinedException } from "../Exceptions/IdIsUndefinedException";
 import { UserDoesNotExistExeption } from "../Exceptions/UserDoesNotExistExeption";
 import { UserInterface } from "../interfaces/user.interface";
+import  jwt  from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
 import User from "./schemas/user.schema";
+//TODO: hacer una funcion que devuelva true o false para que el front verifique el email a la ora de cargar los datos de create
+export const emailExist = async(email:string)=>{
+     try{
+      const userExist = await User.findOne({ email });
+      if (userExist) {
+        throw new EmailExistException("The email already exists");
+      }
+     }catch(error){
+       throw error;
+     } 
+}
+//mapper
+const userToUserInterfaceWithoutPassword = (user:any):UserInterface => {
+  const { apellido, carrera, edad, nombre, registrationDate, email, _id } = user;
+  const userResponse: UserInterface = {
+    _id,
+    apellido,
+    carrera,
+    edad,
+    email,
+    nombre,
+    registrationDate,
+  };
+  return userResponse;
+} 
 
 export const createModel = async (user: UserInterface) => {
   try {
     const userData = new User(user);
-    // buscar si existe usuario (filtrar por email)
-    //el email debe ser unico
     const { email } = userData;
-    const userExist = await User.findOne({ email });
-
-    if (userExist) {
-      throw new EmailExistException("The email already exists");
-    }
+    await emailExist(email);
     // guardar el usuario
     const savedUser = await userData.save();
-    console.log(savedUser);
-    const { apellido, carrera, edad, nombre, registrationDate, _id } =
-      savedUser;
-    //TODO: hacer mappers
-    if (_id == undefined) {
-      // en una de esas nunca lo use, pero que lindo queda.
-      throw new IdIsUndefinedException("_id invalido");
-    }
-    const userResponse: UserInterface = {
-      _id,
-      apellido,
-      carrera,
-      edad,
-      email,
-      nombre,
-      registrationDate,
-    };
 
-    return userResponse;
+    if (savedUser._id == undefined) {
+      //TODO: analisas si es posible que pase
+       throw new IdIsUndefinedException("_id invalido");
+    }
+
+
+    return userToUserInterfaceWithoutPassword(savedUser);
   } catch (error) {
     throw error;
   }
 };
-
 export const deleteUser = async (id: string) => {
   try {
     //verifica si el usuario existe
@@ -51,7 +61,6 @@ export const deleteUser = async (id: string) => {
     throw error;
   }
 };
-
 export const findById = async (id: string) => {
   try {
     const _id = id;
@@ -59,52 +68,77 @@ export const findById = async (id: string) => {
     if (!userExist) {
       throw new UserDoesNotExistExeption("User not found");
     }
-
+     
     return userExist;
   } catch (error) {
     throw error;
   }
 };
-
 export const findAll = async ()=>{
    try{
+    const users = await User.find();
+    const usersWithoutPassord = users.map((user)=>{
+          const userI:UserInterface ={
+            _id: user._id,
+            nombre: user.nombre,
+            apellido:user.apellido,
+            carrera:user.carrera,
+            edad: user.edad,
+            email:user.email,
+            registrationDate:user.registrationDate
+          }
+          return userI;
 
+    })
+/*  si esta vacio que devuelva una lista vacia. []
+    if (users.length === 0) {
+      throw new UserDoesNotExistExeption("There are not users");
+    } */
+    return usersWithoutPassord;
    }catch(error){
-    
+     throw new Error("Internal error");
    }
 }
+export const update = async (id:string, payload:UserInterface) =>{
+  try{
 
-/* 
-export const get = async (req:Request, res:Response) => {
+   const user = await findById(id);
+   const updateUser = await User.findByIdAndUpdate(
+    { _id: id }, payload, {new: true,});
+   
+    return userToUserInterfaceWithoutPassword(updateUser);
+
+  }catch(error){
+    throw error;
+  }
+
+}
+
+export const validate = async (email:string, password:string) => {
   try {
-    const users = await User.find();
-    if (users.length === 0) {
-      return res.status(404).json({ message: "There are no users" });
+ 
+    const userFound = await User.findOne({email});
+    if (!userFound || userFound.password == null) {
+      throw new UserDoesNotExistExeption("wrong email or password");
     }
-    res.status(200).json(users);
+
+    //La contraseña que llega de body la encriptamos y la comparamos contra la guardada
+    if (bcrypt.compareSync(password, userFound.password)) {
+      //payload, secreto, tiempo de expiracion
+      const payload = {
+        userId: userFound._id,
+        userEmail: userFound.email,
+      };
+      //firmar token
+      //TODO: palabra secreta y el tiempo de expiracion llevarlos al env 
+      const token = jwt.sign(payload, "secreto", { expiresIn: "1h" });
+      return token;
+    }else{
+      throw new UserDoesNotExistExeption("wrong email or password");
+    }
   } catch (error) {
-    res.status(500).json({ error: "internal server error" });
+    throw error;
   }
 };
-*/
-/*
-export const update = async (req:Request, res:Response) => {
-  try {
-    //saber que vamos a actualizar con un identificador unico
-    const id = req.params.id;
-    //saber si existe la entidad a actualizar
-    const userExist = await User.findOne({ _id: id });
-    console.log(req.params.id);
-    if (!userExist) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    //actualizamos datos de usuario
-    const updateUser = await User.findByIdAndUpdate({ _id: id }, req.body, {
-      new: true,
-    });
-    res.status(201).json(updateUser);
-  } catch (error) {
-    res.status(500).json({ error: "internal server error" });
-  }
-};
-*/
+
+
