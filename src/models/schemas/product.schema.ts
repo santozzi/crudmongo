@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     required: [true, "Price field is required"],
     min: [0, "Price field has to be a number"],
     //Al consultar precio multiplica el valor guardado en price
-    get: function (value:any) {
+    get: function (value:number) {
       return value * 1.21;
     },
     //Al ingresar precio guarda el valor de price multiplicado
@@ -36,9 +36,9 @@ const productSchema = new mongoose.Schema({
       message: (props:any) => `${props.value} no es un estado valido`,
     },
   },
-  category: String,
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "category" },
   destacado: Boolean,
 });
 
-productSchema.set("toJSON", {getters: true,});
+productSchema.set("toJSON", { getters: true});
 export default mongoose.model("product", productSchema);
