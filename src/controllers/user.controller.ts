@@ -1,8 +1,8 @@
 import User from "../models/schemas/user.schema";
 import { Request, Response } from "express";
-import { UserInterface } from "../interfaces/user.interface";
+import { UserInterface } from "../interfaces/user/user.interface";
 import { createModel,deleteUser,findById,findAll as get,update as updateModel, validate as validateModel } from "../models/user.model";
-import { RequestWithUser } from "../interfaces/RequestWithUser";
+import { RequestWithUser } from "../interfaces/user/RequestWithUser";
 
 export const create = async (req:Request, res:Response) => { 
     try {
@@ -50,7 +50,6 @@ export const findAll = async (req:Request, res:Response) => {
        res.status(500).json({ error: error.message });
   }
 };
-
 export const deleteUsr = async (req:Request, res:Response) => {
   try {
     const _id = req.params.id;
@@ -84,7 +83,6 @@ export const findOne = async (req:Request, res:Response) => {
  
   }
 };
-
 export const update = async (req:Request, res:Response) => {
   try {
     const id = req.params.id;
@@ -103,7 +101,6 @@ export const update = async (req:Request, res:Response) => {
    
   }
 };
-
 export const validate = async (req:Request, res:Response) => {
   try {
     const {email, password} = req.body;

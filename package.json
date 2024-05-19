@@ -15,7 +15,7 @@
     }
   },
   "keywords": [],
-  "author": "",
+  "author": "Sergio J. Antozzi",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",

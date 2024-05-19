@@ -1,26 +1,28 @@
 import { EmailExistException } from "../Exceptions/EmailExistExeption";
 import { IdIsUndefinedException } from "../Exceptions/IdIsUndefinedException";
 import { UserDoesNotExistExeption } from "../Exceptions/UserDoesNotExistExeption";
-import { UserInterface } from "../interfaces/user.interface";
-import  jwt  from "jsonwebtoken";
+import { UserInterface } from "../interfaces/user/user.interface";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
 import User from "./schemas/user.schema";
 import { jwtConfig } from "../config/jwt.config";
+
 //TODO: hacer una funcion que devuelva true o false para que el front verifique el email a la ora de cargar los datos de create
-export const emailExist = async(email:string)=>{
-     try{
-      const userExist = await User.findOne({ email });
-      if (userExist) {
-        throw new EmailExistException("The email already exists");
-      }
-     }catch(error){
-       throw error;
-     } 
-}
+
+export const emailExist = async (email: string) => {
+  try {
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      throw new EmailExistException("The email already exists");
+    }
+  } catch (error) {
+    throw error;
+  }
+};
 //mapper
-const userToUserInterfaceWithoutPassword = (user:any):UserInterface => {
-  const { apellido, carrera, edad, nombre, registrationDate, email, _id } = user;
+const userToUserInterfaceWithoutPassword = (user: any): UserInterface => {
+  const { apellido, carrera, edad, nombre, registrationDate, email, _id } =
+    user;
   const userResponse: UserInterface = {
     _id,
     apellido,
@@ -31,7 +33,8 @@ const userToUserInterfaceWithoutPassword = (user:any):UserInterface => {
     registrationDate,
   };
   return userResponse;
-} 
+};
+//fin mapper
 
 export const createModel = async (user: UserInterface) => {
   try {
@@ -43,9 +46,8 @@ export const createModel = async (user: UserInterface) => {
 
     if (savedUser._id == undefined) {
       //TODO: analisas si es posible que pase
-       throw new IdIsUndefinedException("_id invalido");
+      throw new IdIsUndefinedException("_id invalido");
     }
-
 
     return userToUserInterfaceWithoutPassword(savedUser);
   } catch (error) {
@@ -69,56 +71,51 @@ export const findById = async (id: string) => {
     if (!userExist) {
       throw new UserDoesNotExistExeption("User not found");
     }
-     
+
     return userExist;
   } catch (error) {
     throw error;
   }
 };
-export const findAll = async ()=>{
-   try{
+export const findAll = async () => {
+  try {
     const users = await User.find();
-    const usersWithoutPassord = users.map((user)=>{
-          const userI:UserInterface ={
-            _id: user._id,
-            nombre: user.nombre,
-            apellido:user.apellido,
-            carrera:user.carrera,
-            edad: user.edad,
-            email:user.email,
-            registrationDate:user.registrationDate
-          }
-          return userI;
-
-    })
-/*  si esta vacio que devuelva una lista vacia. []
+    const usersWithoutPassord = users.map((user) => {
+      const userI: UserInterface = {
+        _id: user._id,
+        nombre: user.nombre,
+        apellido: user.apellido,
+        carrera: user.carrera,
+        edad: user.edad,
+        email: user.email,
+        registrationDate: user.registrationDate,
+      };
+      return userI;
+    });
+    /*  si esta vacio que devuelva una lista vacia. []
     if (users.length === 0) {
       throw new UserDoesNotExistExeption("There are not users");
     } */
     return usersWithoutPassord;
-   }catch(error){
-     throw new Error("Internal error");
-   }
-}
-export const update = async (id:string, payload:UserInterface) =>{
-  try{
+  } catch (error) {
+    throw new Error("Internal error");
+  }
+};
+export const update = async (id: string, payload: UserInterface) => {
+  try {
+    const user = await findById(id);
+    const updateUser = await User.findByIdAndUpdate({ _id: id }, payload, {
+      new: true,
+    });
 
-   const user = await findById(id);
-   const updateUser = await User.findByIdAndUpdate(
-    { _id: id }, payload, {new: true,});
-   
     return userToUserInterfaceWithoutPassword(updateUser);
-
-  }catch(error){
+  } catch (error) {
     throw error;
   }
-
-}
-
-export const validate = async (email:string, password:string) => {
+};
+export const validate = async (email: string, password: string) => {
   try {
- 
-    const userFound = await User.findOne({email});
+    const userFound = await User.findOne({ email });
     if (!userFound || userFound.password == null) {
       throw new UserDoesNotExistExeption("wrong email or password");
     }
@@ -131,15 +128,15 @@ export const validate = async (email:string, password:string) => {
         userEmail: userFound.email,
       };
       //firmar token
-     
-      const token = jwt.sign(payload, jwtConfig.JWT_SECRET, { expiresIn: jwtConfig.JWT_EXPIRED });
+
+      const token = jwt.sign(payload, jwtConfig.JWT_SECRET, {
+        expiresIn: jwtConfig.JWT_EXPIRED,
+      });
       return token;
-    }else{
+    } else {
       throw new UserDoesNotExistExeption("wrong email or password");
     }
   } catch (error) {
     throw error;
   }
 };
-
-

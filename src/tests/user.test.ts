@@ -1,7 +1,7 @@
 import { mongooseConnection,mongooseDisconect } from '../db/mongo.db';
 import app from '../app';
 import request from 'supertest';
-import {UserInterface} from '../interfaces/user.interface'
+import {UserInterface} from '../interfaces/user/user.interface'
 import { ObjectId } from 'mongodb';
 
 const route = '/users/'

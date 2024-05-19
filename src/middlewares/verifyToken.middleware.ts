@@ -1,7 +1,7 @@
 import { NextFunction,Request,Response } from "express";
 import { verifyToken } from "../utils/verifyToken"
-import { UserIdentify } from "../interfaces/userIdentify.interface";
-import { RequestWithUser } from "../interfaces/RequestWithUser";
+import { UserIdentify } from "../interfaces/user/userIdentify.interface";
+import { RequestWithUser } from "../interfaces/user/RequestWithUser";
 import { jwtConfig } from "../config/jwt.config";
 
 
