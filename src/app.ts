@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 //routes
 app.use(rootRouter);
-app.use("/users",userRouter);
-app.use("/categories",categoryRouter);
-app.use("/products",productRoute);
+app.use("/api/users",userRouter);
+app.use("/api/categories",categoryRouter);
+app.use("/api/products",productRoute);
 export default app;
