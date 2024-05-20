@@ -1,0 +1,94 @@
+<p>Ejemplos de peticiones GET, de productos, categorías de productos y de usuarios, para más detalle consultar la documentación.</p>
+<div class="products">
+    <div class="products-title">
+        Get products
+    </div>
+    <div class="alert alert-dark" role="alert">
+        <span class="badge bg-primary">GET</span>
+        http://localhost:3000/api/products
+    </div>
+    <div class="product-cards">
+        {{#each products}}
+        <div class="card">
+            <div class="card-image">
+                  <img src={{images.[0]}} class="card-img-top" alt="...">
+            
+            </div>
+          <div class="card-body">
+                <p class="card-text">
+                   <div class="card-title">
+                    <h5>{{name}}</h5>
+                   </div>
+                   <div class="card-price">
+                    <h6>${{price}}</h6>
+                   </div>
+                    <div class="card-description">
+                        <p>{{description}}</p>
+                    </div>
+            
+                  
+                </p>
+            </div>
+            
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="products">
+    <div class="products-title">
+        Get categories
+    </div>
+    <div class="alert alert-dark" role="alert">
+        <span class="badge bg-primary">GET</span>
+        http://localhost:3000/api/categories
+    </div>
+    <div class="product-cards">
+        {{#each categories}}
+        <div class="card  category">
+            <div class="card-image">
+                  <img src={{images.[0]}} class="card-img-top" alt="...">
+            
+            </div>
+          <div class="card-body ">
+                <p class="card-text">
+                   <div class="card-title">
+                    <h5>{{name}}</h5>
+                
+                   </div>
+                </p>
+            </div>
+            
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div class="products">
+    
+    <div class="products-title">
+        Get users
+    </div>
+    <div class="alert alert-dark" role="alert">
+        <span class="badge bg-primary">GET</span>
+        http://localhost:3000/api/users
+    </div>
+    <div class="product-cards">
+        {{#each users}}
+        <div class="card  category">
+            <div class="card-image">
+                  <img src={{images.[0]}} class="card-img-top" alt="...">
+            
+            </div>
+          <div class="card-body ">
+                <p class="card-text">
+                   <div class="card-title">
+                    <h5>{{nombre}} {{apellido}}</h5>
+                
+                
+                   </div>
+                </p>
+            </div>
+            
+        </div>
+        {{/each}}
+    </div>
+</div>

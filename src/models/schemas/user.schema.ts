@@ -62,6 +62,7 @@ const carreraEnum = [
       type: Date,
       default: Date.now(),
     },
+    images:Array<String>,
   
     password: {
       type: String,

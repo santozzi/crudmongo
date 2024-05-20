@@ -6,14 +6,15 @@ export const create = async (req: Request, res: Response) => {
   try {
     //TODO: validar el req con un middleware
 
-    const { id, name, category, description, price, quantity } = req.body;
+    const { id, name, category, description, price, quantity,images } = req.body;
     const product: ProductInterface = {
       id,
       name,
       category,
       description,
       price,
-      quantity
+      quantity,
+      images
     };
     const productResponse: any = await createModel(product);
     // mostrar informacion del usuario guardado
@@ -47,10 +48,13 @@ export const findById=async(req: Request, res: Response)=>{
       
     }
 }
+
+
+
+
 export const findAll=async(req: Request, res: Response)=>{
     try{
-        console.log("estoy aca");
-        
+              
       const products = await findAllModel();
       res.status(200).json(products);
     }catch(error){

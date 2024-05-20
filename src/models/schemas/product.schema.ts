@@ -24,6 +24,7 @@ const productSchema = new mongoose.Schema({
     //     return value * 1.21
     // }
   },
+  images:Array<String>,
 
   description: String,
   quantity: Number,

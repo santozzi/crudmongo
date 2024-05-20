@@ -1,5 +1,13 @@
 import {Request,Response} from 'express';
+import { findAllRootModel } from '../models/product.model';
+import { findAllRootModel as findAllCat } from '../models/category.model';
+import { findAllRoot } from '../models/user.model';
 
-export function home(req:Request, res:Response){
-  res.status(200).json({message: "hola api con mongo"});
+export async function home(req:Request, res:Response){
+  const products = await findAllRootModel();
+  const categories = await findAllCat();
+  const users = await findAllRoot();
+
+  
+  res.render("home",{products,categories,users});
 }

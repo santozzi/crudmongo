@@ -47,6 +47,21 @@ try{
     throw error;
 }
 }
+
+export const findAllRootModel = async()=>{
+    try{
+        const products = await Product.find().populate("category").lean();
+        //TODO:mandar solo 4 articulos
+        if(products.length>4){
+            return products.slice(0,4);
+        }
+        return products;
+    }catch(error){
+        throw error;
+    }
+}
+
+
 export const findAllModel =async()=>{
 try{
     const products = await Product.find().populate("category");

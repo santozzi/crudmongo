@@ -9,4 +9,5 @@ export interface UserInterface{
     edad: number;
     registrationDate?: Date;
     password?: string;
+    images:string[];
 }

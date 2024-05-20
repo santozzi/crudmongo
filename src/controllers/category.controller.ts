@@ -6,11 +6,8 @@ export const create = async (req: Request, res: Response) => {
   try {
     //TODO: validar el req con un middleware
 
-    const { name } = req.body;
-    const category: CategoryInterface = {
-      name,
-    };
-    const categoryResponse: CategoryInterface = await createModel(category);
+
+    const categoryResponse = await createModel(req.body);
     // mostrar informacion del usuario guardado
     res.status(200).json(categoryResponse);
   } catch (error) {

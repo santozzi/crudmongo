@@ -21,7 +21,7 @@ export const emailExist = async (email: string) => {
 };
 //mapper
 const userToUserInterfaceWithoutPassword = (user: any): UserInterface => {
-  const { apellido, carrera, edad, nombre, registrationDate, email, _id } =
+  const { apellido, carrera, edad, nombre, registrationDate, email, _id,images } =
     user;
   const userResponse: UserInterface = {
     _id,
@@ -31,6 +31,7 @@ const userToUserInterfaceWithoutPassword = (user: any): UserInterface => {
     email,
     nombre,
     registrationDate,
+    images
   };
   return userResponse;
 };
@@ -80,7 +81,7 @@ export const findById = async (id: string) => {
 export const findAll = async () => {
   try {
     const users = await User.find();
-    const usersWithoutPassord = users.map((user) => {
+    const usersWithoutPassord = users.map((user:any) => {
       const userI: UserInterface = {
         _id: user._id,
         nombre: user.nombre,
@@ -89,9 +90,38 @@ export const findAll = async () => {
         edad: user.edad,
         email: user.email,
         registrationDate: user.registrationDate,
+        images: user.images
       };
       return userI;
     });
+    /*  si esta vacio que devuelva una lista vacia. []
+    if (users.length === 0) {
+      throw new UserDoesNotExistExeption("There are not users");
+    } */
+    return usersWithoutPassord;
+  } catch (error) {
+    throw new Error("Internal error");
+  }
+};
+export const findAllRoot = async () => {
+  try {
+    const users = await User.find().lean();
+   const usersWithoutPassord = users.map((user:any) => {
+      const userI: UserInterface = {
+        _id: user._id,
+        nombre: user.nombre,
+        apellido: user.apellido,
+        carrera: user.carrera,
+        edad: user.edad,
+        email: user.email,
+        registrationDate: user.registrationDate,
+        images: user.images
+
+      }; 
+      
+      return userI;
+    });
+   
     /*  si esta vacio que devuelva una lista vacia. []
     if (users.length === 0) {
       throw new UserDoesNotExistExeption("There are not users");

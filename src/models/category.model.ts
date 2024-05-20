@@ -40,6 +40,17 @@ try{
     throw error;
 }
 }
+export const findAllRootModel =async()=>{
+  try{
+    const categories = await Category.find().lean();
+    if(categories.length>4){
+        return categories.slice(0,4);
+    }
+    return categories;
+  }catch(error){
+      throw error;
+  }
+  }
 export const updateModel =async(id:string, payload:CategoryInterface)=>{
 try{
   await findByIdModel(id);

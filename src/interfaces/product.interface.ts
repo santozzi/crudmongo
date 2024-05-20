@@ -7,4 +7,5 @@ export interface ProductInterface {
     description:string;
     quantity:number;
     category:CategoryInterface;
+    images?:string[];
 }
