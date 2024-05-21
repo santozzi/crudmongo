@@ -8,14 +8,15 @@ export const create = async (req:Request, res:Response) => {
     try {
    //TODO: validar el req con un middleware
    
-   const {apellido,carrera, edad, nombre, password, email } = req.body;
+   const {apellido,carrera, edad, nombre, password, email, images } = req.body;
    const user:UserInterface={
      apellido,
      carrera,
      edad,
      nombre,
      password,
-     email
+     email,
+     images
    }
 
    const userResponse:UserInterface = await createModel(user);

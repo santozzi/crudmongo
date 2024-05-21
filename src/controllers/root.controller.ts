@@ -11,3 +11,7 @@ export async function home(req:Request, res:Response){
   
   res.render("home",{products,categories,users});
 }
+
+export async function documentation(req:Request, res:Response){
+  res.render("documentation");
+}

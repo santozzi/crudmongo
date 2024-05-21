@@ -1,0 +1,438 @@
+<h1>documentacion</h1>
+API RESTful
+<ul>
+    <li><a href="#products">Products</li></a>
+    <li><a href="#categories">Categories</li></a>
+    <li><a href="#users">Users</li></a>
+    <li><a href="/">volver</li></a>
+</ul>
+<div class="restapi">
+    <div class="title-rest" >
+    <a name="products"></a>
+    Products
+    </div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-primary">GET</span>
+    http://localhost:3000/api/products
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+[
+    {
+        "_id": "664ab8ce9e523132867de5b3",
+        "name": "remera xl",
+        "price": 62.92,
+        "images": [
+            "https://www.tradicional13.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tradicional_remera_hombre_negro.jpg",
+            "https://dcdn.mitiendanube.com/stores/001/205/102/products/remera-lisa-fr-rj-11-ef4b6ca4b08c3f434315906905869409-640-0.jpg"
+        ],
+        "description": "descripcion bonita",
+        "quantity": 12,
+        "category": null,
+        "__v": 0,
+        "id": "664ab8ce9e523132867de5b3"
+    }
+]
+        </code>
+    </pre>
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-primary">GET</span>
+    http://localhost:3000/api/products/:id
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+
+    {
+        "_id": "664ab8ce9e523132867de5b3",
+        "name": "remera xl",
+        "price": 62.92,
+        "images": [
+            "https://www.tradicional13.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tradicional_remera_hombre_negro.jpg",
+            "https://dcdn.mitiendanube.com/stores/001/205/102/products/remera-lisa-fr-rj-11-ef4b6ca4b08c3f434315906905869409-640-0.jpg"
+        ],
+        "description": "descripcion bonita",
+        "quantity": 12,
+        "category": null,
+        "__v": 0,
+        "id": "664ab8ce9e523132867de5b3"
+    }
+
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-success">POST</span>
+    http://localhost:3000/api/products/create
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "name":"Samsung Galaxy Book3",
+    "price":5252,
+    "description":"Notebook color Silver",
+    "quantity":12,
+    "category":"664b2de111b7bd009f73d5b2",
+    "images":[
+        "https://multipoint.com.ar/Image/0/700_700-Samsung-123410665-ar-galaxy-book3-156-inch-int-np750xfga-np750xfg-kb1ar-536358864--Download-Sou-zoom.png"
+    ]
+}
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "name": "samsung galaxy book3",
+    "price": 6354.92,
+    "images": [
+        "https://multipoint.com.ar/Image/0/700_700-Samsung-123410665-ar-galaxy-book3-156-inch-int-np750xfga-np750xfg-kb1ar-536358864--Download-Sou-zoom.png"
+    ],
+    "description": "Notebook color Silver",
+    "quantity": 12,
+    "category": "664b2de111b7bd009f73d5b2",
+    "_id": "664b2e5511b7bd009f73d5b5",
+    "__v": 0,
+    "id": "664b2e5511b7bd009f73d5b5"
+}
+        </code>
+    </pre>
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-warning">PUT</span>
+    http://localhost:3000/api/products/update/:id
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+        "name": "remera xxl"
+}
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "_id": "664ab8ce9e523132867de5b3",
+    "name": "remera xxl",
+    "price": 62.92,
+    "images": [
+        "https://www.tradicional13.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/t/r/tradicional_remera_hombre_negro.jpg",
+        "https://dcdn.mitiendanube.com/stores/001/205/102/products/remera-lisa-fr-rj-11-ef4b6ca4b08c3f434315906905869409-640-0.jpg"
+    ],
+    "description": "descripcion bonita",
+    "quantity": 12,
+    "category": "6649410cdc52722746a609da",
+    "__v": 0,
+    "id": "664ab8ce9e523132867de5b3"
+}
+        </code>
+    </pre>
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-danger">DELETE</span>
+    http://localhost:3000/api/products/delete/:id
+</div>
+
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "message": "Product deleted successfully"
+}
+        </code>
+    </pre>
+</div>
+<div class="title-rest" >
+<a name="categories"></a>
+Categories
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-primary">GET</span>
+    http://localhost:3000/api/categories
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+[
+    {
+        "_id": "664abb0816552ce58a760f62",
+        "name": "remeras",
+        "images": [
+            "https://acdn.mitiendanube.com/stores/001/590/037/products/remeras-lisas-para-estampar1-dee4e7be636a064dde16674917363964-640-0.jpg"
+        ],
+        "__v": 0
+    }
+]
+        </code>
+    </pre>
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-primary">GET</span>
+    http://localhost:3000/api/categories/:id
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+
+    {
+        "_id": "664abb0816552ce58a760f62",
+        "name": "remeras",
+        "images": [
+            "https://acdn.mitiendanube.com/stores/001/590/037/products/remeras-lisas-para-estampar1-dee4e7be636a064dde16674917363964-640-0.jpg"
+        ],
+        "__v": 0
+    }
+
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-success">POST</span>
+    http://localhost:3000/api/categories/create
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+
+    {  
+        "name": "remeras",
+        "images": [
+            "https://acdn.mitiendanube.com/stores/001/590/037/products/remeras-lisas-para-estampar1-dee4e7be636a064dde16674917363964-640-0.jpg"
+        ]
+    }
+
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+    {
+        "_id": "664abb0816552ce58a760f62",
+        "name": "remeras",
+        "images": [
+            "https://acdn.mitiendanube.com/stores/001/590/037/products/remeras-lisas-para-estampar1-dee4e7be636a064dde16674917363964-640-0.jpg"
+        ],
+        "__v": 0
+    }
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-warning">PUT</span>
+    http://localhost:3000/api/categories/update/:id
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+
+    {  
+        "name": "remeras"
+    }
+
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+    {
+        "_id": "664abb0816552ce58a760f62",
+        "name": "remeras",
+        "images": [
+            "https://acdn.mitiendanube.com/stores/001/590/037/products/remeras-lisas-para-estampar1-dee4e7be636a064dde16674917363964-640-0.jpg"
+        ],
+        "__v": 0
+    }
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-danger">DELETE</span>
+    http://localhost:3000/api/categories/delete/:id
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "message": "Category deleted successfully"
+}
+        </code>
+    </pre>
+</div>
+
+
+<div class="title-rest" >
+<a name="users"></a>
+Users
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-primary">GET</span>
+    http://localhost:3000/api/users
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+[
+    {
+        "_id": "6648ec409aecbb45a66f0bb8",
+        "nombre": "naty",
+        "apellido": "gantozzi",
+        "carrera": "ingenieria",
+        "edad": 40,
+        "email": "naty@gmail.com",
+        "registrationDate": "2024-04-25T18:57:23.975Z",
+        "images": [
+            "https://static.vecteezy.com/system/resources/previews/014/212/681/non_2x/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-for-website-and-mobile-app-design-illustration-on-a-white-isolated-background-vector.jpg"
+        ]
+    }
+]
+        </code>
+    </pre>
+</div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-primary">GET</span>
+    http://localhost:3000/api/users/:id
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+    {
+        "_id": "6648ec409aecbb45a66f0bb8",
+        "nombre": "naty",
+        "apellido": "gantozzi",
+        "carrera": "ingenieria",
+        "edad": 40,
+        "email": "naty@gmail.com",
+        "registrationDate": "2024-04-25T18:57:23.975Z",
+        "images": [
+            "https://static.vecteezy.com/system/resources/previews/014/212/681/non_2x/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-for-website-and-mobile-app-design-illustration-on-a-white-isolated-background-vector.jpg"
+        ]
+    }
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-success">POST</span>
+    http://localhost:3000/api/users/create
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+ {
+  "nombre": "Sergio",
+  "apellido": "Antozzi",
+  "email": "santozzi@gmail.com",
+  "carrera": "ingenieria",
+  "edad": 40,
+  "password": "12345Aa",
+  "images":[
+    "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face-thumbnail.png"
+  ]
+ }
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+ {
+    "_id": "664c043827b7d7b0d60017e4",
+    "apellido": "antozzi",
+    "carrera": "ingenieria",
+    "edad": 40,
+    "email": "santozzi@gmail.com",
+    "nombre": "sergio",
+    "registrationDate": "2024-05-21T02:17:07.631Z",
+    "images": [
+        "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face-thumbnail.png"
+    ]
+}
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-warning">PUT</span>
+    http://localhost:3000/api/users/update/:id
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+    {
+       
+        "nombre": "Sergio",
+        "apellido": "Justozzi"
+
+    }
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "_id": "664c043827b7d7b0d60017e4",
+    "apellido": "justozzi",
+    "carrera": "ingenieria",
+    "edad": 40,
+    "email": "santozzi@gmail.com",
+    "nombre": "sergio",
+    "registrationDate": "2024-05-21T02:17:07.631Z",
+    "images": [
+        "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face-thumbnail.png"
+    ]
+}
+        </code>
+    </pre>
+</div>
+
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-danger">DELETE</span>
+    http://localhost:3000/api/users/delete/:id
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "message": "User deleted successfully"
+}
+        </code>
+    </pre>
+</div>
+
+

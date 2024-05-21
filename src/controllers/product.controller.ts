@@ -6,9 +6,9 @@ export const create = async (req: Request, res: Response) => {
   try {
     //TODO: validar el req con un middleware
 
-    const { id, name, category, description, price, quantity,images } = req.body;
+    const { _id, name, category, description, price, quantity,images } = req.body;
     const product: ProductInterface = {
-      id,
+      _id,
       name,
       category,
       description,
