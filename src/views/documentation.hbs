@@ -1,11 +1,41 @@
-<h1>documentacion</h1>
+<h1>Documentación</h1>
 API RESTful
-<ul>
+<ul><li><a href="#login">Login</li></a>
     <li><a href="#products">Products</li></a>
     <li><a href="#categories">Categories</li></a>
     <li><a href="#users">Users</li></a>
     <li><a href="/">volver</li></a>
 </ul>
+    <div class="title-rest" >
+    <a name="login"></a>
+    Login
+    </div>
+<div class="alert alert-dark" role="alert">
+    <span class="badge bg-success">POST</span>
+    {{URL}}/api/users/login
+</div>
+<span class="badge bg-secondary">Request</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "email":"santozzi@gmail.com",
+    "password":"passwordAa25",
+}
+        </code>
+    </pre>
+</div>
+<span class="badge bg-secondary">Response</span>
+<div class="json-container">
+    <pre>
+        <code>
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRjMTU4OWFjZGRiZGZhMmJiY2U5NmMiLCJ1c2VyRW1haWwiOiJzYW50b3p6aUBnbWFpbC5jb20iLCJpYXQiOjE3MTYyNjg5MDksImV4cCI6MTcxNjM1NTMwOX0.CIOfE6XByOO6npEshuDPUTc8jkx8eEGCQS4XZLZJZP8"
+}
+        </code>
+    </pre>
+</div>
+
 <div class="restapi">
     <div class="title-rest" >
     <a name="products"></a>
@@ -14,7 +44,7 @@ API RESTful
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-primary">GET</span>
-    http://localhost:3000/api/products
+    {{URL}}/api/products
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -41,7 +71,7 @@ API RESTful
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-primary">GET</span>
-    http://localhost:3000/api/products/:id
+    {{URL}}/api/products/:id
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -69,7 +99,7 @@ API RESTful
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-success">POST</span>
-    http://localhost:3000/api/products/create
+    {{URL}}/api/products/create
 </div>
 <span class="badge bg-secondary">Request</span>
 <div class="json-container">
@@ -110,7 +140,7 @@ API RESTful
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-warning">PUT</span>
-    http://localhost:3000/api/products/update/:id
+    {{URL}}/api/products/update/:id
 </div>
 <span class="badge bg-secondary">Request</span>
 <div class="json-container">
@@ -145,7 +175,7 @@ API RESTful
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-danger">DELETE</span>
-    http://localhost:3000/api/products/delete/:id
+    {{URL}}/api/products/delete/:id
 </div>
 
 <span class="badge bg-secondary">Response</span>
@@ -164,7 +194,7 @@ Categories
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-primary">GET</span>
-    http://localhost:3000/api/categories
+    {{URL}}/api/categories
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -185,7 +215,7 @@ Categories
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-primary">GET</span>
-    http://localhost:3000/api/categories/:id
+    {{URL}}/api/categories/:id
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -207,7 +237,7 @@ Categories
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-success">POST</span>
-    http://localhost:3000/api/categories/create
+    {{URL}}/api/categories/create
 </div>
 <span class="badge bg-secondary">Request</span>
 <div class="json-container">
@@ -242,7 +272,7 @@ Categories
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-warning">PUT</span>
-    http://localhost:3000/api/categories/update/:id
+    {{URL}}/api/categories/update/:id
 </div>
 <span class="badge bg-secondary">Request</span>
 <div class="json-container">
@@ -274,7 +304,7 @@ Categories
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-danger">DELETE</span>
-    http://localhost:3000/api/categories/delete/:id
+    {{URL}}/api/categories/delete/:id
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -294,7 +324,7 @@ Users
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-primary">GET</span>
-    http://localhost:3000/api/users
+    {{URL}}/api/users
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -319,7 +349,7 @@ Users
 </div>
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-primary">GET</span>
-    http://localhost:3000/api/users/:id
+    {{URL}}/api/users/:id
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
@@ -343,7 +373,7 @@ Users
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-success">POST</span>
-    http://localhost:3000/api/users/create
+    {{URL}}/api/users/create
 </div>
 <span class="badge bg-secondary">Request</span>
 <div class="json-container">
@@ -385,7 +415,7 @@ Users
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-warning">PUT</span>
-    http://localhost:3000/api/users/update/:id
+    {{URL}}/api/users/update/:id
 </div>
 <span class="badge bg-secondary">Request</span>
 <div class="json-container">
@@ -422,7 +452,7 @@ Users
 
 <div class="alert alert-dark" role="alert">
     <span class="badge bg-danger">DELETE</span>
-    http://localhost:3000/api/users/delete/:id
+    {{URL}}/api/users/delete/:id
 </div>
 <span class="badge bg-secondary">Response</span>
 <div class="json-container">
