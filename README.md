@@ -30,8 +30,6 @@ Esta aplicación es una API RESTful que permite la gestión de usuarios y la aut
 - Mongoose
 - JSON Web Tokens (JWT)
 - bcrypt
-- Jest
-- Supertest
 - TypeScript
 - Express
 
@@ -61,6 +59,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
     PORT_EXPRESS=3000
     JWT_EXPIRED=24h
     JWT_SECRET=secreto
+    URL="http://localhost:3000"
     ```
 
 4. Compila el proyecto TypeScript a JavaScript:
