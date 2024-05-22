@@ -87,14 +87,14 @@ Con el servidor en funcionamiento, puedes utilizar herramientas como Postman o c
 - `DELETE /api/users/delete/:id`: Eliminar un usuario por ID (requiere autenticación).
 
 ### Productos
-- `POST /api/products`: Crear un nuevo producto(requiere autenticación).
+- `POST /api/products/create`: Crear un nuevo producto(requiere autenticación).
 - `GET /api/products`: Obtener la lista de productos.
 - `GET /api/products/:id`: Obtener los detalles de un producto por ID.
 - `PUT /api/products/update/:id`: Actualizar los detalles de un producto por ID (requiere autenticación).
 - `DELETE /api/products/delete/:id`: Eliminar un producto por ID (requiere autenticación).
 
 ### Categorías
-- `POST /api/categories`: Crear una nueva categoría de productos (requiere autenticación)..
+- `POST /api/categories/create`: Crear una nueva categoría de productos (requiere autenticación)..
 - `GET /api/categories`: Obtener la lista de categorías de productos.
 - `GET /api/categories/:id`: Obtener los detalles de una categoría por ID.
 - `PUT /api/categories/update/:id`: Actualizar los detalles de una categoría por ID (requiere autenticación).
