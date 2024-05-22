@@ -8,7 +8,6 @@ Este es el repositorio del proyecto final para la creación de una aplicación w
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
 - [Instalación](#instalación)
 - [Uso](#uso)
-- [Pruebas](#pruebas)
 - [Contribuciones](#contribuciones)
 - [Licencia](#licencia)
 
@@ -101,15 +100,6 @@ Con el servidor en funcionamiento, puedes utilizar herramientas como Postman o c
 - `GET /api/categories/:id`: Obtener los detalles de una categoría por ID.
 - `PUT /api/categories/update/:id`: Actualizar los detalles de una categoría por ID (requiere autenticación).
 - `DELETE /api/categories/delete/:id`: Eliminar una categoría por ID.
-
-## Pruebas
-
-Para ejecutar las pruebas, utiliza el siguiente comando:
-
-```bash
-npm test
-```
-Esto ejecutará todas las pruebas definidas en el proyecto utilizando Jest y Supertest.
 
 ## Contribuciones
 
