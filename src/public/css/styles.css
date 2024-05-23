@@ -12,7 +12,8 @@ body{
     width: 100%;
     font-family: 'Freeman', sans-serif;
     position: relative;
-    box-shadow: 0px 0px 15px 1px #00000030
+    box-shadow: 0px 0px 15px 1px #00000030;
+    padding:0 5rem;
 }
 aside{
     display: flex;
@@ -22,6 +23,7 @@ aside{
     position:fixed;
     width: 200px;
     height: 100%;
+    margin-left: -5rem;
     
 }
 nav{
