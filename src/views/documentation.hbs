@@ -1,55 +1,157 @@
-<h1>Documentación</h1>
-API RESTful
-<ul><li><a href="#login">Login</li></a>
-    <li><a href="#products">Products</li></a>
-    <li><a href="#categories">Categories</li></a>
-    <li><a href="#users">Users</li></a>
-    <li><a href="/">volver</li></a>
-</ul>
-    <div class="title-rest" >
-    <a name="login"></a>
-    Login
-    </div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-success">POST</span>
-    {{URL}}/api/users/login
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+<a name="inicio"></a>
+<a href="#inicio"><button class="btn btn-primary forma">up</button></a>
+<aside>
+    <nav>
+
+        <div class="nav-head">
+            <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                    height="25" fill="currentColor"
+                    class="bi bi-house" viewBox="0 0 16 16">
+                    <path
+                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                </svg>HOME</a>
+        </div>
+        <div class="nav-head">
+            About
+        </div>
+        <div class="nav-item">
+            <ul>
+                <li><a href="#introduccion">Introducción</li></a>
+                <li><a href="#casosdeuso">Casos de uso</li></a>
+            </ul>
+
+        </div>
+        <div class="nav-head">
+            API REST
+        </div>
+        <div class="nav-item">
+            <ul>
+                <li><a href="#jwt">Auth JWT</li></a>
+                <li><a href="#products">Products</li></a>
+                <li><a href="#categories">Categories</li></a>
+                <li><a href="#users">Users</li></a>
+
+            </ul>
+
+        </div>
+
+    </nav>
+</aside>
+
+<div class="container">
+
+    <div class="right">
+        <h2>Introducción</h2>
+        <p>
+            Digital commerce es un proyecto creado para la diplomatura en
+            FullStack de la UTN.BA, el mismo consiste en
+            una API REST que permite realizar operaciones CRUD sobre productos,
+            categorías de productos y usuarios.
+            Utilizando las siguientes tecnologías.
+        </p>
+        <ul>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>MongoDB</li>
+            <li>Mongoose</li>
+            <li>JWT</li>
+        </ul>
+        <h2>
+            <a name="casosdeuso"></a>
+            Casos de uso
+        </h2>
+
+        <h2>
+            <a name="jwt"></a>
+            Auth JWT
+        </h2>
+        <h3>
+            Login
+        </h3>
+        <p>
+            Permite a un usuario loguearse en la aplicación y obtener un token
+            de autenticación.
+        </p>
+        <div class="alert alert-dark" role="alert">
+            <span class="badge bg-success">POST</span>
+            {{URL}}/api/users/login
+        </div>
+        <span class="badge bg-secondary">Request</span>
+        <div class="json-container">
+            <pre>
+          <code class="language-json">
+{
+    "email" : "santozzi@gmail.com",
+    "password" : "passwordAa25",
+}
+          </code>
+        </pre>
+        </div>
+        <p>La respuesta que nos brinda este método es un token, que se debe
+            incluir en los métodos que requieren
+            restricción. Para poder enviar al autenticación debe agregar en el
+            header la key: Authentication y value: el
+            toquen devuelto.</p>
+        <span class="badge bg-secondary">Response</span>
+        <div class="json-container">
+            <pre>
+          <code class="language-json">
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRjMTU4OWFjZGRiZGZhMmJiY2U5NmMiLCJ1c2VyRW1haWwiOiJzYW50b3p6aUBnbWFpbC5jb20iLCJpYXQiOjE3MTY0MTk3MTUsImV4cCI6MTcxNjUwNjExNX0.NicNrS-SpoO1GfDWKeqG7DUYFWtHGYDQmvzIImy5K6c"
+}
+          </code>
+        </pre>
+        </div>
+
+        <h3>
+            Obtener usuario con la sesión
+        </h3>
+        en desarrollo
+
+        <span class="badge bg-secondary">Response</span>
+        <div class="json-container">
+            <pre class="code">
         <code>
 {
     "email":"santozzi@gmail.com",
     "password":"passwordAa25",
 }
+  
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+        </div>
+
+        <div class="restapi">
+            <a name="products"></a>
+            <h2> Productos </h2>
+            <h3> Estructura </h3>
+            <p>La interface de un producto en lenguaje Typescript es la
+                siguiente:</p>
+            <div class="json-container">
+                <pre>
         <code>
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRjMTU4OWFjZGRiZGZhMmJiY2U5NmMiLCJ1c2VyRW1haWwiOiJzYW50b3p6aUBnbWFpbC5jb20iLCJpYXQiOjE3MTYyNjg5MDksImV4cCI6MTcxNjM1NTMwOX0.CIOfE6XByOO6npEshuDPUTc8jkx8eEGCQS4XZLZJZP8"
-}
+interface Product{    
+    _id?:string;
+    name:string;
+    price:number;
+    description:string;
+    quantity:number;
+    category:CategoryInterface;
+    images:string[];
+    }
+
         </code>
     </pre>
-</div>
-
-<div class="restapi">
-    <div class="title-rest" >
-    <a name="products"></a>
-    Products
-    </div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-primary">GET</span>
-    {{URL}}/api/products
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
-        <code>
+            </div>
+            <h3> Obtener todos los productos </h3>
+            <div class="alert alert-dark" role="alert">
+                <span class="badge bg-primary">GET</span>
+                {{URL}}/api/products
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
+        <code class="theme-atom-one-dark">
 [
     {
         "_id": "664ab8ce9e523132867de5b3",
@@ -68,14 +170,16 @@ API RESTful
 ]
         </code>
     </pre>
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-primary">GET</span>
-    {{URL}}/api/products/:id
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+
+            <h3> Obtener un producto determinado por id </h3>
+            <div class="alert alert-dark" role="alert">
+                <span class="badge bg-primary">GET</span>
+                {{URL}}/api/products/:id
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 
     {
@@ -95,15 +199,25 @@ API RESTful
 
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-success">POST</span>
-    {{URL}}/api/products/create
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3> Crear un nuevo producto </h3>
+            <p>Para crear un nuevo producto debe enviar un producto con la
+                estructura antes descripta por el body, no
+                puede haber nombres de productos repetidos, (requiere
+                autenticación.)</p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-success">POST</span>
+                {{URL}}/api/products/create
+            </div>
+            <span class="badge bg-secondary">Request</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "name":"Samsung Galaxy Book3",
@@ -117,10 +231,10 @@ API RESTful
 }
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "name": "samsung galaxy book3",
@@ -129,7 +243,9 @@ API RESTful
         "https://multipoint.com.ar/Image/0/700_700-Samsung-123410665-ar-galaxy-book3-156-inch-int-np750xfga-np750xfg-kb1ar-536358864--Download-Sou-zoom.png"
     ],
     "description": "Notebook color Silver",
-    "quantity": 12,
+    "quantity": 12,{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjRjMTU4OWFjZGRiZGZhMmJiY2U5NmMiLCJ1c2VyRW1haWwiOiJzYW50b3p6aUBnbWFpbC5jb20iLCJpYXQiOjE3MTYyNjg5MDksImV4cCI6MTcxNjM1NTMwOX0.CIOfE6XByOO6npEshuDPUTc8jkx8eEGCQS4XZLZJZP8"
+}
     "category": "664b2de111b7bd009f73d5b2",
     "_id": "664b2e5511b7bd009f73d5b5",
     "__v": 0,
@@ -137,24 +253,34 @@ API RESTful
 }
         </code>
     </pre>
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-warning">PUT</span>
-    {{URL}}/api/products/update/:id
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3> Actualizar un producto </h3>
+            <p>Para actualizar un producto determinado se debe enviar un id
+                existente por el endpoint /update/:id y el
+                objeto produc desde el body. (requiere autenticación)</p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-warning">PUT</span>
+                {{URL}}/api/products/update/:id
+            </div>
+            <span class="badge bg-secondary">Request</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
         "name": "remera xxl"
 }
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "_id": "664ab8ce9e523132867de5b3",
@@ -172,33 +298,58 @@ API RESTful
 }
         </code>
     </pre>
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-danger">DELETE</span>
-    {{URL}}/api/products/delete/:id
-</div>
+            </div>
+            <h3>Eliminar un producto por id</h3>
+            <p>Elimina un producto determinado enviando mediante el endpoint el
+                id del producto a elmininar (requiere
+                autenticación).</p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-danger">DELETE</span>
+                {{URL}}/api/products/delete/:id
+            </div>
 
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "message": "Product deleted successfully"
 }
         </code>
     </pre>
-</div>
-<div class="title-rest" >
-<a name="categories"></a>
-Categories
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-primary">GET</span>
-    {{URL}}/api/categories
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <a name="categories"></a>
+            <h2> Categorías </h2>
+            <p>Categorías de productos</p>
+            <h3> Estructura </h3>
+            <p>La interface de una categoría en lenguaje Typescript es la
+                siguiente:</p>
+            <div class="json-container">
+                <pre>
+        <code>
+            interface Category{
+                _id?:string;
+                name:string;
+                images:string[];
+            }
+        </code>
+    </pre>
+            </div>
+            <h3> Obtener todas las categorías </h3>
+
+            <div class="alert alert-dark" role="alert">
+                <span class="badge bg-primary">GET</span>
+                {{URL}}/api/categories
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 [
     {
@@ -212,14 +363,17 @@ Categories
 ]
         </code>
     </pre>
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-primary">GET</span>
-    {{URL}}/api/categories/:id
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Obtener una categoría determinada por id
+            </h3>
+            <div class="alert alert-dark" role="alert">
+                <span class="badge bg-primary">GET</span>
+                {{URL}}/api/categories/:id
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 
     {
@@ -233,15 +387,29 @@ Categories
 
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-success">POST</span>
-    {{URL}}/api/categories/create
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Crear una nueva categoría.
+            </h3>
+            <p>
+                Para crear una nueva categoría debe enviar una categoría con la
+                estructura antes descripta por el body,
+                no puede haber nombres de categorías repetidos.(requiere
+                autenticación.)
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-success">POST</span>
+                {{URL}}/api/categories/create
+            </div>
+            <span class="badge bg-secondary">Request</span>
+            <div class="json-container">
+                <pre>
         <code>
 
     {  
@@ -253,10 +421,10 @@ Categories
 
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
     {
         "_id": "664abb0816552ce58a760f62",
@@ -268,15 +436,28 @@ Categories
     }
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-warning">PUT</span>
-    {{URL}}/api/categories/update/:id
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Actualizar una categoría
+            </h3>
+            <p>
+                Para actualizar una categoría determinada se debe enviar un id
+                existente por el endpoint /update/:id y el
+                objeto categoría desde el body. (requiere autenticación)
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-warning">PUT</span>
+                {{URL}}/api/categories/update/:id
+            </div>
+            <span class="badge bg-secondary">Request</span>
+            <div class="json-container">
+                <pre>
         <code>
 
     {  
@@ -285,10 +466,10 @@ Categories
 
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
     {
         "_id": "664abb0816552ce58a760f62",
@@ -300,35 +481,83 @@ Categories
     }
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-danger">DELETE</span>
-    {{URL}}/api/categories/delete/:id
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Eliminar una categoría por id
+            </h3>
+            <p>
+                Elimina una categoría determinada enviando mediante el endpoint
+                el id de la categoría a elmininar
+                (requiere autenticación).
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-danger">DELETE</span>
+                {{URL}}/api/categories/delete/:id
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "message": "Category deleted successfully"
 }
         </code>
     </pre>
-</div>
+            </div>
 
+            <a name="users"></a>
+            <h2>
+                Users
+            </h2>
+            <h3>
 
-<div class="title-rest" >
-<a name="users"></a>
-Users
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-primary">GET</span>
-    {{URL}}/api/users
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+                Estructura
+            </h3>
+            <p>
+                La interface de un usuario en lenguaje Typescript es la
+                siguiente:
+            </p>
+            <div class="json-container">
+                <pre>
+        <code>
+            interface User{
+                _id?:string;
+                nombre:string;
+                apellido:string;
+                email:string;
+                carrera:string;
+                edad:number;
+                password:string;
+                images:string[];
+            }
+        </code>
+    </pre>
+            </div>
+            <h3>
+                Obtener todos los usuarios
+            </h3>
+            <p>
+                Permite obtener todos los usuarios (requiere autenticación)
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-primary">GET</span>
+                {{URL}}/api/users
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 [
     {
@@ -346,14 +575,27 @@ Users
 ]
         </code>
     </pre>
-</div>
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-primary">GET</span>
-    {{URL}}/api/users/:id
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Obtener un usuario determinado por id
+            </h3>
+            <p>
+                Permite obtener un usuario determinado por id (requiere
+                autenticación)
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-primary">GET</span>
+                {{URL}}/api/users/:id
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
     {
         "_id": "6648ec409aecbb45a66f0bb8",
@@ -369,15 +611,28 @@ Users
     }
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-success">POST</span>
-    {{URL}}/api/users/create
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Crear un nuevo usuario
+            </h3>
+            <p>
+                Para crear un nuevo usuario debe enviar un usuario con la
+                estructura antes descripta por el body, no puede haber emails de
+                usuarios repetidos, (requiere autenticación.)
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-success">POST</span>
+                {{URL}}/api/users/create
+            </div>
+            <span class="badge bg-secondary">Request</span>
+            <div class="json-container">
+                <pre>
         <code>
  {
   "nombre": "Sergio",
@@ -392,10 +647,10 @@ Users
  }
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
  {
     "_id": "664c043827b7d7b0d60017e4",
@@ -411,15 +666,28 @@ Users
 }
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-warning">PUT</span>
-    {{URL}}/api/users/update/:id
-</div>
-<span class="badge bg-secondary">Request</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Actualizar un usuario
+            </h3>
+            <p>
+                Para actualizar un usuario determinado se debe enviar un id
+                existente por el endpoint /update/:id y el objeto usuario desde
+                el body. (requiere autenticación)
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-warning">PUT</span>
+                {{URL}}/api/users/update/:id
+            </div>
+            <span class="badge bg-secondary">Request</span>
+            <div class="json-container">
+                <pre>
         <code>
     {
        
@@ -429,10 +697,10 @@ Users
     }
         </code>
     </pre>
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "_id": "664c043827b7d7b0d60017e4",
@@ -448,21 +716,36 @@ Users
 }
         </code>
     </pre>
-</div>
-
-<div class="alert alert-dark" role="alert">
-    <span class="badge bg-danger">DELETE</span>
-    {{URL}}/api/users/delete/:id
-</div>
-<span class="badge bg-secondary">Response</span>
-<div class="json-container">
-    <pre>
+            </div>
+            <h3>
+                Eliminar un usuario por id
+            </h3>
+            <p>
+                Elimina un usuario determinado enviando mediante el endpoint el
+                id del usuario a elmininar (requiere autenticación).
+            </p>
+            <div class="alert alert-dark" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-lock"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
+                </svg>
+                <span class="badge bg-danger">DELETE</span>
+                {{URL}}/api/users/delete/:id
+            </div>
+            <span class="badge bg-secondary">Response</span>
+            <div class="json-container">
+                <pre>
         <code>
 {
     "message": "User deleted successfully"
 }
         </code>
     </pre>
+            </div>
+
+        </div>
+
+    </div>
 </div>
-
-
