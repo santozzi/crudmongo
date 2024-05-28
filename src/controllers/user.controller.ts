@@ -7,7 +7,7 @@ import { RequestWithUser } from "../interfaces/user/RequestWithUser";
 export const create = async (req:Request, res:Response) => { 
     try {
    //TODO: validar el req con un middleware
-   
+   console.log("log",req.body);
    const {apellido,carrera, edad, nombre, password, email, images } = req.body;
    const user:UserInterface={
      apellido,
@@ -18,11 +18,8 @@ export const create = async (req:Request, res:Response) => {
      email,
      images
    }
-
    const userResponse:UserInterface = await createModel(user);
-   
-   
-    // mostrar informacion del usuario guardado
+      // mostrar informacion del usuario guardado
 
     res.status(200).json(userResponse);
   } catch (error) {
@@ -37,6 +34,37 @@ export const create = async (req:Request, res:Response) => {
     }
     
   }
+};
+export const createRoot = async (req:Request, res:Response) => { 
+  try {
+ //TODO: validar el req con un middleware
+ console.log("log",req.body);
+ const {apellido,carrera, edad, nombre, password, email, images } = req.body;
+ const user:UserInterface={
+   apellido,
+   carrera,
+   edad,
+   nombre,
+   password,
+   email,
+   images
+ }
+ const userResponse:UserInterface = await createModel(user);
+    // mostrar informacion del usuario guardado
+
+  res.redirect("/login");
+} catch (error) {
+  if(error instanceof Error){
+    if(error.name=="EmailExistException"){
+      res.status(409).json({ message: error.message });
+    }else if (error.name=="IdIsUndefinedException"){
+      res.status(404).json({ message: error.message });
+    }else{
+      res.status(500).json({ message: error.message });
+    }
+  }
+  
+}
 };
 export const findAll = async (req:Request, res:Response) => {
   try {

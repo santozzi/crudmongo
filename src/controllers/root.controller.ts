@@ -16,3 +16,17 @@ export async function home(req:Request, res:Response){
 export async function documentation(req:Request, res:Response){
   res.render("documentation",{URL});
 }
+
+export async function registro(req:Request, res:Response){
+
+
+  res.render("registro");
+}
+export async function login(req:Request, res:Response){
+ 
+  
+  res.render("login");
+}
+export async function dashboard(req:Request, res:Response){
+  res.render("dashboard");
+}

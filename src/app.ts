@@ -9,21 +9,7 @@ import productRoute from './routes/product.routes';
 import {engine} from "express-handlebars";
 import path from 'path';
 const app = express();
-//Template engine
-/*
-app.set('views', path.join(__dirname, 'views'));
 
-
-app.engine(".hbs", engine({
-    defaultLayout: 'home',
-    layoutsDir: path.join(app.get('views'),'layouts'),
-    partialsDir:path.join(app.get('views'),'partials'),
-    extname:'.hbs'
-  
-}));
-app.set("view engine",".hbs");
-app.set("views","./src/views/layouts");
-*/
 app.engine('.hbs',engine());
 app.set('view engine','.hbs');
 app.set('views', path.join(__dirname,'views'));
@@ -31,6 +17,7 @@ app.set('views', path.join(__dirname,'views'));
 app.use('/public',express.static(path.join(__dirname,'public')));
 app.use(morgan('dev'));
 app.use(cors());
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 //routes
 app.use(rootRouter);

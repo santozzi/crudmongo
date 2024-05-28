@@ -1,14 +1,20 @@
+ <div class="espacio"></div>
 <header>
-    <div class="header-left">
-        <div>
-           <h1>Digital commerce</h1>
-           <h5>Proyecto para la diplomatura en FullStack de la UTN.BA</h5> 
-        </div>
 
-        <a href="/documentation"><button class="btn btn-primary">Documentación</button></a>  
+
+  <div class="header-title">
+    <div class="header-left">
+      <div>
+        <h1>Digital commerce</h1>
+        <h5>Proyecto para la diplomatura en FullStack de la UTN.BA</h5>
+      </div>
+
+      <a href="/documentation"><button
+          class="btn btn-primary">Documentación</button></a>
     </div>
-     
- <img src="public/images/ecommerce-website-mockup.png" alt="imagen"/>
+
+    <img src="public/images/ecommerce-website-mockup.png" alt="imagen" />
+  </div>
 </header>
 <hr>
 
@@ -24,27 +30,27 @@
   </div>
   <div class="product-cards">
     {{#each products}}
-      <div class="card">
-        <div class="card-image">
-          <img src={{images.[0]}} class="card-img-top" alt="..." />
-
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <div class="card-title">
-              <h5>{{name}}</h5>
-            </div>
-            <div class="card-price">
-              <h6>${{price}}</h6>
-            </div>
-            <div class="card-description">
-              <p>{{description}}</p>
-            </div>
-
-          </p>
-        </div>
+    <div class="card">
+      <div class="card-image">
+        <img src={{images.[0]}} class="card-img-top" alt="..." />
 
       </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="card-title">
+            <h5>{{name}}</h5>
+          </div>
+          <div class="card-price">
+            <h6>${{price}}</h6>
+          </div>
+          <div class="card-description">
+            <p>{{description}}</p>
+          </div>
+
+        </p>
+      </div>
+
+    </div>
     {{/each}}
   </div>
 </div>
@@ -58,21 +64,21 @@
   </div>
   <div class="product-cards">
     {{#each categories}}
-      <div class="card category">
-        <div class="card-image">
-          <img src={{images.[0]}} class="card-img-top" alt="..." />
-
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <div class="card-title">
-              <h5>{{name}}</h5>
-
-            </div>
-          </p>
-        </div>
+    <div class="card category">
+      <div class="card-image">
+        <img src={{images.[0]}} class="card-img-top" alt="..." />
 
       </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="card-title">
+            <h5>{{name}}</h5>
+
+          </div>
+        </p>
+      </div>
+
+    </div>
     {{/each}}
   </div>
 </div>
@@ -87,21 +93,21 @@
   </div>
   <div class="product-cards">
     {{#each users}}
-      <div class="card category">
-        <div class="card-image">
-          <img src={{images.[0]}} class="card-img-top" alt="..." />
-
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <div class="card-title">
-              <h5>{{nombre}} {{apellido}}</h5>
-
-            </div>
-          </p>
-        </div>
+    <div class="card category">
+      <div class="card-image">
+        <img src={{images.[0]}} class="card-img-top" alt="..." />
 
       </div>
+      <div class="card-body">
+        <p class="card-text">
+          <div class="card-title">
+            <h5>{{nombre}} {{apellido}}</h5>
+
+          </div>
+        </p>
+      </div>
+
+    </div>
     {{/each}}
   </div>
 </div>
@@ -118,8 +124,7 @@
         <img
           src="https://media.licdn.com/dms/image/D4D12AQFIP1Sz-eHRjg/article-cover_image-shrink_720_1280/0/1684876475366?e=2147483647&v=beta&t=0yrmkNwfutQLUDgkCOjX_ktg9ge4o_RjVlRxj5aNuvY"
           class="card-img-top"
-          alt="..."
-        />
+          alt="..." />
 
       </div>
       <div class="card-body">
@@ -138,14 +143,14 @@
         <img
           src="https://miro.medium.com/v2/resize:fit:512/1*doAg1_fMQKWFoub-6gwUiQ.png"
           class="card-img-top"
-          alt="..."
-        />
+          alt="..." />
 
       </div>
       <div class="card-body">
         <p class="card-text caracteristicas">
 
-          MongoDB es una base de datos NoSQL que utiliza documentos JSON para almacenar datos de forma flexible y escalable.
+          MongoDB es una base de datos NoSQL que utiliza documentos JSON para
+          almacenar datos de forma flexible y escalable.
 
         </p>
       </div>
@@ -156,14 +161,15 @@
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png"
           class="card-img-top"
-          alt="..."
-        />
+          alt="..." />
 
       </div>
       <div class="card-body">
         <p class="card-text caracteristicas">
 
-          TypeScript es un lenguaje de programación de código abierto que extiende JavaScript con tipos estáticos opcionales para desarrollo más robusto.
+          TypeScript es un lenguaje de programación de código abierto que
+          extiende JavaScript con tipos estáticos opcionales para desarrollo más
+          robusto.
 
         </p>
       </div>
@@ -171,3 +177,4 @@
     </div>
   </div>
 </div>
+<div class="espacio"></div>

@@ -1,0 +1,22 @@
+version: "3.2"
+
+
+services:
+  
+  node2:
+    restart: always
+    build: .     
+
+    container_name: node2
+    ports:
+      - "80:3000"
+    environment:
+      - VIRTUAL_HOST=dcommerce.com.ar
+      - LETSENCRYPT_HOST=dcommerce.com.ar
+      - LETSENCRYPT_EMAIL=santozzi@gmail.com
+  
+
+volumes:
+  certs: 
+  html:
+  vhostd:
