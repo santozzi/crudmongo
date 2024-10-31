@@ -1,22 +1,19 @@
-version: "3.2"
-
+version: "3"
 
 services:
-  
-  node2:
+  web:
+    container_name: barcode
     restart: always
-    build: .     
-
-    container_name: node2
+    build: .
     ports:
-      - "80:3000"
-    environment:
-      - VIRTUAL_HOST=dcommerce.com.ar
-      - LETSENCRYPT_HOST=dcommerce.com.ar
-      - LETSENCRYPT_EMAIL=santozzi@gmail.com
-  
-
-volumes:
-  certs: 
-  html:
-  vhostd:
+      - "3001:3000"
+    links:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+    
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+        - "27017:27017"

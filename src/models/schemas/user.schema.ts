@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { isGoodPassword } from "../../utils/validator";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 const carreraEnum = [
     "ingenieria",
     "medicina",

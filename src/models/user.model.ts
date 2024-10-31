@@ -3,7 +3,7 @@ import { IdIsUndefinedException } from "../Exceptions/IdIsUndefinedException";
 import { UserDoesNotExistExeption } from "../Exceptions/UserDoesNotExistExeption";
 import { UserInterface } from "../interfaces/user/user.interface";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import User from "./schemas/user.schema";
 import { jwtConfig } from "../config/jwt.config";
 
